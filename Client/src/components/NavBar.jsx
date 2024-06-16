@@ -36,7 +36,7 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
             >
-              You Are Welcome
+              Atlas Tech Innovation
             </Typography>
             <Typography
               variant="h6"
@@ -44,8 +44,11 @@ const NavBar = () => {
               noWrap
               sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
             >
-              YRW
+              Atlas
             </Typography>
+            <Button color="inherit" startIcon={<Lock />}>
+              Login
+            </Button>
           
           </Toolbar>
         </Container>
