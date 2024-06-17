@@ -1,29 +1,35 @@
 
-import React from "react";
-import { createContext} from "react";
-import { useContext } from "react";
-import { useReducer } from "react"; 
+
+import React, { createContext, useContext, useReducer } from "react";
 import reducer from "./reducer";
+import Loading from "../components/Loading";
 
+const initialState = {
+  currentUser: null,
+  openLogin: false,
+  loading: false, 
+  alert: {
+    open: false,
+    severity: "info",
+    message: " "
+  }
+};
 
-const initialState={
-    currentUser:null
-}
+const Context = createContext(initialState);
 
-const Context= createContext(initialState)
+export const useValue = () => {
+  return useContext(Context);
+};
 
-export const useValue =() =>{
-    return useContext(Context)
-}
+const ContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-const ContextProvider =({children}) =>{
-    const[state, dispatch]= useReducer(reducer, initialState)
-    return( 
-        <Context.Provider value={{state,dispatch}}>
-            {children}
-        </Context.Provider>
-
-    )
-}
+  return (
+    <Context.Provider value={{ state, dispatch }}>
+      {children}
+      {state.isLoading && <Loading />} 
+    </Context.Provider>
+  );
+};
 
 export default ContextProvider;
