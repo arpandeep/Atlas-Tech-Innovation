@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Node modules
 node_modules/
 
@@ -28,3 +29,6 @@ coverage
 # OS files
 .DS_Store
 Thumbs.db
+=======
+node_modules
+>>>>>>> 635ce463f79ed69dd81355ee42209cb0a4aa3120
