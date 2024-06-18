@@ -15,14 +15,8 @@ const initialState = {
   }
 };
 
-<<<<<<< HEAD
-const initialState={
-    currentUser:null,
-    openLogin:false,
-}
-=======
 const Context = createContext(initialState);
->>>>>>> 635ce463f79ed69dd81355ee42209cb0a4aa3120
+
 
 export const useValue = () => {
   return useContext(Context);
