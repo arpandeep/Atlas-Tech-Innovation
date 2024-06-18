@@ -7,7 +7,8 @@ import reducer from "./reducer";
 
 
 const initialState={
-    currentUser:null
+    currentUser:null,
+    openLogin:false,
 }
 
 const Context= createContext(initialState)
