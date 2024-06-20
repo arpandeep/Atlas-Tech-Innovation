@@ -3,9 +3,9 @@ import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography } from 
 import { Menu , Lock } from "@mui/icons-material";
 import { useValue } from "../context/ContextProvider";
 import UserIcons from "./user/UserIcons";
-import photoURL from './logo.jpeg'
 
-const user ={name:'test', photoURL}
+
+
 
 const NavBar = () => {
 
