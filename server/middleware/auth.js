@@ -5,7 +5,7 @@ const client= new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 const auth= async(req,res,next)=>{
   try {
     const token= req.headers.authorization.split(' ')[1]
-    const googleToken= token.length > 1000
+    const googleToken= token.length > 2000
     if (googleToken){
       const ticket= await client.verifyIdToken({
         idToken:token,
