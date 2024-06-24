@@ -1,3 +1,4 @@
+import React from 'react';
 import { Close, Send } from '@mui/icons-material';
 import {
   Button,
@@ -13,6 +14,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useValue } from '../../context/ContextProvider';
 import GoogleOneTapLogin from './GoogleOneTapLogin';
 import PasswordField from './PasswordField';
+import { login,register } from '../../actions/user';
+
 
 const Login = () => {
   const {
@@ -32,26 +35,35 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // testing Loading
-    dispatch({ type: 'START_LOADING' });
 
-    setTimeout(() => {
-      dispatch({ type: 'END_LOADING' });
-    }, 6000);
+    //const email = emailRef.current?.value;
+    //const password = passwordRef.current?.value;
+    //const name = nameRef.current?.value;
+    //const confirmPassword = confirmPasswordRef.current?.value;
 
-    //testing Notification
-    const password = passwordRef.current.value;
-    const confirmPassword = confirmPasswordRef.current.value;
-    if (password !== confirmPassword) {
-      dispatch({
-        type: 'UPDATE_ALERT',
-        payload: {
-          open: true,
-          severity: 'error',
-          message: 'Passwords do not match',
-        },
-      });
-    }
+
+    const email= emailRef.current.value
+    const password= passwordRef.current.value
+
+    if(!isRegister) return login({email,password},dispatch)
+    
+    const name= nameRef.current.value
+    const confirmPassword=confirmPasswordRef.current.value
+
+    
+
+
+    if(password!== confirmPassword) 
+      return dispatch({
+        type:'UPDATE_ALERT',
+        payload:{
+          open:true, 
+          severity:'error', 
+          message:'password dont match'}
+        });
+
+        register({name, email, password},dispatch)
+
   };
 
   useEffect(() => {
@@ -100,7 +112,7 @@ const Login = () => {
             label="Email"
             type="email"
             fullWidth
-            inputRef={nameRef}
+            inputRef={emailRef}
             required
           />
           <PasswordField {...{ passwordRef }} />
