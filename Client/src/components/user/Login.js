@@ -24,6 +24,8 @@ const Login = () => {
   } = useValue();
   const [title, setTitle] = useState('Login');
   const [isRegister, setIsRegister] = useState(false);
+  const [nameError, setNameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -69,6 +71,7 @@ const Login = () => {
   useEffect(() => {
     isRegister ? setTitle('Register') : setTitle('Login');
   }, [isRegister]);
+
   return (
     <Dialog open={openLogin} onClose={handleClose}>
       <DialogTitle>
@@ -100,8 +103,11 @@ const Login = () => {
               type="text"
               fullWidth
               inputRef={nameRef}
-              inputProps={{ minLength: 2 }}
+              inputProps={{ minLength: 5 }}
               required
+              onChange={handleNameChange}
+              error={Boolean(nameError)}
+              helperText={nameError}
             />
           )}
           <TextField
@@ -113,14 +119,22 @@ const Login = () => {
             type="email"
             fullWidth
             inputRef={emailRef}
+            inputRef={emailRef}
             required
           />
-          <PasswordField {...{ passwordRef }} />
+          <PasswordField
+            passwordRef={passwordRef}
+            error={Boolean(passwordError)}
+            helperText={passwordError}
+            onChange={handlePasswordChange}
+          />
           {isRegister && (
             <PasswordField
               passwordRef={confirmPasswordRef}
               id="confirmPassword"
               label="Confirm Password"
+              error={Boolean(passwordError)}
+              helperText={passwordError}
             />
           )}
         </DialogContent>

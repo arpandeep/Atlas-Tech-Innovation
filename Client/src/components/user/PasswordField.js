@@ -13,6 +13,13 @@ const PasswordField = ({
   const handleClick = () => {
     setShowPassword(!showPassword);
   };
+  const handleClick = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+  };
 
   const handleMouseDown = (e) => {
     e.preventDefault();
