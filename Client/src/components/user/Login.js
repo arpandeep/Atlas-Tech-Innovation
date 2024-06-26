@@ -66,7 +66,7 @@ const Login = () => {
 
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     isRegister ? setTitle('Register') : setTitle('Login');
   }, [isRegister]);
   return (
