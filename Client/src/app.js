@@ -12,7 +12,7 @@ const App =() =>{
     <Notification />
     <Login />
     <NavBar />
-    <BottomNav />
+    <BottomNav/>
     </>
     )
 }

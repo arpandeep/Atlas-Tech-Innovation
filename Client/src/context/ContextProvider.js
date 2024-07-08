@@ -8,9 +8,8 @@ const initialState = {
   loading: false,
   alert: { open: false, severity: 'info', message: '' },
   profile: { open: false, file: null, photoURL: '' },
-  images: [],
-  details: { title: '', description: '', price: 0 },
-  location: { lng: 0, lat: 0 },
+  images:[],
+  details: {title:'',description:'', price:0}
 };
 
 // Create context
