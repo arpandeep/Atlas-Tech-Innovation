@@ -62,7 +62,6 @@ const NavBar = () => {
     </AppBar>
     <Toolbar />
     </>
-      
     
   );
 };

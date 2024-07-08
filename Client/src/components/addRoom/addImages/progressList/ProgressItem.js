@@ -32,6 +32,7 @@ const ProgressItem = ({ file }) => {
           type: 'UPDATE_ALERT',
           payload: { open: true, severity: 'error', message: error.message },
         });
+
         console.log(error);
       }
     };
@@ -69,4 +70,5 @@ const backDrop = {
   alignItems: 'center',
   justifyContent: 'center',
   background: 'rgba(0,0,0, .5)',
+
 };

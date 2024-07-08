@@ -40,6 +40,7 @@ const reducer = (state, action) => {
           location: { lng: 0, lat: 0 },
         };
 
+
     default:
       throw new Error(`No matched action type: ${action.type}`);
   }

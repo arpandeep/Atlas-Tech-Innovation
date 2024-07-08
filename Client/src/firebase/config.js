@@ -7,13 +7,13 @@ import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyA19OlYhq1jatpqxnv6sDBhPdD93x2mgNM",
-    authDomain: "atlas-76996.firebaseapp.com",
-    projectId: "atlas-76996",
-    storageBucket: "atlas-76996.appspot.com",
-    messagingSenderId: "516670738246",
-    appId: "1:516670738246:web:6c4b1031f7f2450bdadf47"
-};
+    apiKey: "AIzaSyDAHNQcA4VLZ_2RNWyPf7wmeOijqAlX9Ak",
+    authDomain: "atlas-240bd.firebaseapp.com",
+    projectId: "atlas-240bd",
+    storageBucket: "atlas-240bd.appspot.com",
+    messagingSenderId: "415045389084",
+    appId: "1:415045389084:web:b640155efd2a2adb89c8d9"
+  };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
