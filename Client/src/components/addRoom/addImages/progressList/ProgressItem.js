@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 import uploadFileProgress from '../../../../firebase/uploadFileProgress';
 import { useValue } from '../../../../context/ContextProvider';
 
-
 const ProgressItem = ({ file }) => {
   const [progress, setProgress] = useState(0);
   const [imageURL, setImageURL] = useState(null);

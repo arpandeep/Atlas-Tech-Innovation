@@ -1,5 +1,4 @@
 const reducer = (state, action) => {
-  console.log('Action:', action);
   switch (action.type) {
     case 'OPEN_LOGIN':
       return { ...state, openLogin: true };
@@ -30,7 +29,7 @@ const reducer = (state, action) => {
     case 'UPDATE_DETAILS':
       return {...state, details:{...state.details, ...action.payload}}
     default:
-      throw new Error('No matched action!');
+      throw new Error(`No matched action type: ${action.type}`);
   }
 };
 
