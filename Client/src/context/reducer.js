@@ -1,5 +1,4 @@
 const reducer = (state, action) => {
-  console.log('Action:', action);
   switch (action.type) {
     case 'OPEN_LOGIN':
       return { ...state, openLogin: true };
@@ -22,15 +21,28 @@ const reducer = (state, action) => {
       return { ...state, currentUser: action.payload };
 
     case 'UPDATE_IMAGES':
-      return{...state , images:[...state.images, action.payload]}
-    
-    case 'DELETE_IMAGE':
-      return{...state , images: state.images.filter(image => image !== action.payload)}
+      return { ...state, images: [...state.images, action.payload] };
 
+    case 'DELETE_IMAGE':
+      return {
+        ...state,
+        images: state.images.filter((image) => image !== action.payload),
+      };
     case 'UPDATE_DETAILS':
-      return {...state, details:{...state.details, ...action.payload}}
+      return { ...state, details: { ...state.details, ...action.payload } };
+    case 'UPDATE_LOCATION':
+      return { ...state, location: action.payload };
+    case 'RESET_ROOM':
+      return {
+          ...state,
+          images: [],
+          details: { title: '', description: '', price: 0 },
+          location: { lng: 0, lat: 0 },
+        };
+
+
     default:
-      throw new Error('No matched action!');
+      throw new Error(`No matched action type: ${action.type}`);
   }
 };
 
