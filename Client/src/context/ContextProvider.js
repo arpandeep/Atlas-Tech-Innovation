@@ -18,6 +18,7 @@ const initialState = {
   addressFilter: null,
   filteredRooms: [],
   room: null,
+
 };
 
 // Create context

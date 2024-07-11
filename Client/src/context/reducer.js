@@ -76,6 +76,8 @@ const reducer = (state, action) => {
       return { ...state, room: action.payload };
 
 
+
+
     default:
       throw new Error(`No matched action type: ${action.type}`);
   }

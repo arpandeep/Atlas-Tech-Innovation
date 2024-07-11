@@ -66,7 +66,6 @@ const NavBar = () => {
     <Toolbar />
     <Sidebar {...{ isOpen, setIsOpen }} />
     </>
-      
     
   );
 };
