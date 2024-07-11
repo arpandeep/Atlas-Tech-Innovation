@@ -34,7 +34,7 @@ const AddLocation = () => {
           });
         });
     }
-  }, []);
+  }, [dispatch, lat, lng]);
   return (
     <Box
       sx={{

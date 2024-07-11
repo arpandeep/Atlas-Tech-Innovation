@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react';
+
+
+import React, { createContext, useContext, useEffect, useReducer, useRef } from 'react';
 import reducer from './reducer'; // Assuming you have defined your reducer correctly in './reducer'
 
 // Initial state
@@ -11,6 +13,11 @@ const initialState = {
   images: [],
   details: { title: '', description: '', price: 0 },
   location: { lng: 0, lat: 0 },
+  rooms: [],
+  priceFilter: 50,
+  addressFilter: null,
+  filteredRooms: [],
+  room: null,
 
 };
 
@@ -18,13 +25,13 @@ const initialState = {
 export const Context = createContext();
 
 // Custom hook to use the context
-export const useValue = () => {
-  return useContext(Context);
-};
+export const useValue = () => useContext(Context);
 
 // Context provider component
 const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const mapRef = useRef();
+  const containerRef = useRef();
 
   // Use effect to initialize state from localStorage
   useEffect(() => {
@@ -35,7 +42,7 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <Context.Provider value={{ state, dispatch }}>
+    <Context.Provider value={{ state, dispatch, mapRef, containerRef }}>
       {children}
     </Context.Provider>
   );
