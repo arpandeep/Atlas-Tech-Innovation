@@ -8,7 +8,7 @@ import {
   StepButton,
   Stepper,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useValue } from '../../context/ContextProvider';
 import AddDetails from './addDetails/AddDetails';
 import AddImages from './addImages/AddImages';
@@ -41,9 +41,10 @@ const AddRoom = ({ setPage }) => {
     if (index !== -1) return false;
     return true;
   };
-  const findUnfinished = () => {
+  const findUnfinished = useCallback(() => {
     return steps.findIndex((step) => !step.completed);
-  };
+  }, [steps]);
+  
 
   useEffect(() => {
     if (images.length) {
@@ -51,21 +52,21 @@ const AddRoom = ({ setPage }) => {
     } else {
       if (steps[2].completed) setComplete(2, false);
     }
-  }, [images]);
+  }, [images, steps]);
   useEffect(() => {
     if (details.title.length > 4 && details.description.length > 9) {
       if (!steps[1].completed) setComplete(1, true);
     } else {
       if (steps[1].completed) setComplete(1, false);
     }
-  }, [details]);
+  }, [details, steps]);
   useEffect(() => {
     if (location.lng || location.lat) {
       if (!steps[0].completed) setComplete(0, true);
     } else {
       if (steps[0].completed) setComplete(0, false);
     }
-  }, [location]);
+  }, [location, steps]);
   const setComplete = (index, status) => {
     setSteps((steps) => {
       steps[index].completed = status;
@@ -78,7 +79,7 @@ const AddRoom = ({ setPage }) => {
     } else {
       if (showSubmit) setShowSubmit(false);
     }
-  }, [steps]);
+  }, [findUnfinished, showSubmit, steps]);
 
   const handleSubmit = () => {
     const room = {
