@@ -21,3 +21,4 @@ const ProgressList = ({ files }) => {
 };
 
 export default ProgressList;
+

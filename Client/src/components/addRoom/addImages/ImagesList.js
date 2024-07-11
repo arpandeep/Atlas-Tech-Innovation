@@ -12,6 +12,7 @@ import deleteFile from '../../../firebase/deleteFile';
 const ImagesList = () => {
   const {
     state: { images = [], currentUser },
+
     dispatch,
   } = useValue();
 
@@ -24,7 +25,7 @@ const ImagesList = () => {
       console.log(error);
     }
   };
-
+  
   return (
     <ImageList
       rowHeight={250}
@@ -58,6 +59,7 @@ const ImagesList = () => {
               </IconButton>
             }
           />
+
         </ImageListItem>
       ))}
     </ImageList>

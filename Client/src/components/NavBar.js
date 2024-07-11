@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import React from 'react';
 import {
   AppBar,
   Box,
@@ -67,6 +68,7 @@ const NavBar = () => {
     <Sidebar {...{ isOpen, setIsOpen }} />
     </>
     
+
   );
 };
 

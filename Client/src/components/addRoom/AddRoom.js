@@ -118,6 +118,7 @@ const AddRoom = ({ setPage }) => {
         }
 
         <Stack direction="row" sx={{ pt: 2, justifyContent: 'space-around' }}>
+
           <Button
             color="inherit"
             disabled={!activeStep}
