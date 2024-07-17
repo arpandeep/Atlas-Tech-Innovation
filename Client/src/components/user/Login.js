@@ -1,4 +1,3 @@
-
 import { Close, Send } from '@mui/icons-material';
 import {
   Button,
@@ -14,8 +13,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useValue } from '../../context/ContextProvider';
 import GoogleOneTapLogin from './GoogleOneTapLogin';
 import PasswordField from './PasswordField';
-import { login,register } from '../../actions/user';
-
+import { login, register } from '../../actions/user';
 
 const Login = () => {
   const {
@@ -29,6 +27,11 @@ const Login = () => {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordHelperText, setPasswordHelperText] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [confirmPasswordHelperText, setConfirmPasswordHelperText] = useState('');
+
   const handleClose = () => {
     dispatch({ type: 'CLOSE_LOGIN' });
   };
@@ -36,39 +39,69 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //const email = emailRef.current?.value;
-    //const password = passwordRef.current?.value;
-    //const name = nameRef.current?.value;
-    //const confirmPassword = confirmPasswordRef.current?.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
 
+    if (!isRegister) return login({ email, password }, dispatch);
 
-    const email= emailRef.current.value
-    const password= passwordRef.current.value
+    const name = nameRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
 
-    if(!isRegister) return login({email,password},dispatch)
-    
-    const name= nameRef.current.value
-    const confirmPassword=confirmPasswordRef.current.value
-
-    
-
-
-    if(password!== confirmPassword) 
+    if (password !== confirmPassword) {
       return dispatch({
-        type:'UPDATE_ALERT',
-        payload:{
-          open:true, 
-          severity:'error', 
-          message:'password dont match'}
-        });
+        type: 'UPDATE_ALERT',
+        payload: {
+          open: true,
+          severity: 'error',
+          message: "Passwords don't match",
+        },
+      });
+    }
 
-        register({name, email, password},dispatch)
+    register({ name, email, password }, dispatch);
+  };
 
+  const validatePassword = (password, setError, setHelperText) => {
+    const rules = [
+      { regex: /.{8,}/, message: 'Password must be at least 8 characters long' },
+      { regex: /[A-Z]/, message: 'Password must contain at least one uppercase letter' },
+      { regex: /[0-9]/, message: 'Password must contain at least one number' },
+      { regex: /[^A-Za-z0-9]/, message: 'Password must contain at least one special character' },
+    ];
+
+    for (const rule of rules) {
+      if (!rule.regex.test(password)) {
+        setError(true);
+        setHelperText(rule.message);
+        return;
+      }
+    }
+
+    setError(false);
+    setHelperText('');
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    validatePassword(value, setPasswordError, setPasswordHelperText);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    const value = e.target.value;
+    const password = passwordRef.current.value;
+    if (value !== password) {
+      setConfirmPasswordError(true);
+      setConfirmPasswordHelperText("Passwords don't match");
+    } else {
+      setConfirmPasswordError(false);
+      setConfirmPasswordHelperText('');
+    }
   };
 
   useEffect(() => {
     isRegister ? setTitle('Register') : setTitle('Login');
   }, [isRegister]);
+
   return (
     <Dialog open={openLogin} onClose={handleClose}>
       <DialogTitle>
@@ -115,12 +148,20 @@ const Login = () => {
             inputRef={emailRef}
             required
           />
-          <PasswordField {...{ passwordRef }} />
+          <PasswordField
+            passwordRef={passwordRef}
+            error={passwordError}
+            helperText={passwordHelperText}
+            onChange={handlePasswordChange}
+          />
           {isRegister && (
             <PasswordField
               passwordRef={confirmPasswordRef}
               id="confirmPassword"
               label="Confirm Password"
+              error={confirmPasswordError}
+              helperText={confirmPasswordHelperText}
+              onChange={handleConfirmPasswordChange}
             />
           )}
         </DialogContent>
