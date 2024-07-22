@@ -34,13 +34,14 @@ app.use((req, res) =>
 const startServer = async () => {
   try {
     await mongoose.connect(process.env.MONGO_CONNECT);
+    console.log('Connected to MongoDB');
     app
       .listen(port, () => console.log(`Server is listening on port: ${port}`))
       .on('error', (e) => {
         console.log('Error happened: ', e.message);
       });
   } catch (error) {
-    console.log(error);
+    console.log('MongoDB connection error:', error);
   }
 };
 
