@@ -128,3 +128,4 @@ const applyFilter = (rooms, address, price) => {
 
   return filteredRooms;
 };
+

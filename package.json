@@ -12,7 +12,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@date-io/date-fns": "^3.0.0",
     "@mapbox/mapbox-gl-geocoder": "^5.0.2",
+    "@mui/lab": "^5.0.0-alpha.172",
+    "@mui/x-date-pickers": "^7.11.0",
+    "@stripe/react-stripe-js": "^2.7.3",
+    "@stripe/stripe-js": "^4.1.0",
+    "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "firebase": "^10.12.2",
@@ -25,9 +34,12 @@
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.2.3",
     "react-router-dom": "^6.23.1",
-    "swiper": "^9.0.0-beta.11"
+    "stripe": "^16.2.0",
+    "swiper": "^9.0.0-beta.11",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "nodemon": "^2.0.22"
   }
 }
