@@ -13,6 +13,7 @@
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.7.0",
+    "formik": "^2.4.6",
     "jwt-decode": "^3.1.2",
     "mapbox-gl": "^2.8.2",
     "moment": "^2.29.3",
@@ -26,7 +27,8 @@
     "supercluster": "^7.1.5",
     "swiper": "^8.2.2",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
